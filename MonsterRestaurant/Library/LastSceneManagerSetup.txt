@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< Updated upstream
-- path: Assets/Scenes/Menu.unity
-=======
-- path: "Assets/Scenes/\uAE30\uBCF8.unity"
->>>>>>> Stashed changes
+- path: Assets/Scenes/Stages.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
