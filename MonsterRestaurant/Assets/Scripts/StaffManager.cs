@@ -56,10 +56,12 @@ public class StaffManager : MonoBehaviour
         staffSituation_text.text = "대기중"; //직원창의 상태 텍스트 대기중으로
         StopAllCoroutines();
 
-        stanby.gameObject.SetActive(true); //stanby 오브젝트를 대기하는곳(의자둘곳)쪽에 위치시키기
+        stanby.gameObject.SetActive(true);
+        //stanby 오브젝트를 대기하는곳(의자둘곳)쪽에 위치시키기
         rest.gameObject.SetActive(false);
         call.gameObject.SetActive(false);
 
+        Debug.Log(staff_name + "대기");
     }
 
     public void ChangeToRest() //휴식중으로 상태 변경
@@ -67,10 +69,12 @@ public class StaffManager : MonoBehaviour
         staffSituation_text.text = "휴식중";//직원창의 상태 텍스트 휴식중으로
         TurbidityMinus();
 
-        rest.gameObject.SetActive(true); //rest 오브젝트를 옥상직원위치로
+        rest.gameObject.SetActive(true);
+        //rest 오브젝트를 옥상직원위치로
         stanby.gameObject.SetActive(false);
         call.gameObject.SetActive(false);
 
+        Debug.Log(staff_name + "휴식");
     }
 
     public void ChangeToCall() //호출중으로 상태 변경
@@ -83,8 +87,15 @@ public class StaffManager : MonoBehaviour
         rest.gameObject.SetActive(false);
         stanby.gameObject.SetActive(false);
 
+        Debug.Log(staff_name + "호출");
+
         //호출버튼 비활성화(호출중으로 변경?)
         //손님속성에 따라 탁기 변화폭 조정
+    }
+
+    public void SelectStaff()
+    {
+
     }
 
 
