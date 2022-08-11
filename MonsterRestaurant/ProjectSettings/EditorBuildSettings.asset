@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleSceneCMJ.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Stages.unity
+    guid: 5334505657606bc4697a33608b4a750e
+  - enabled: 1
+    path: "Assets/Scenes/\uAE30\uBCF8.unity"
+    guid: b4165a1532451d34992c63acb6ca87bc
   m_configObjects: {}
