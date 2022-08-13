@@ -12,6 +12,4 @@ public class SelectWaitMonster : MonoBehaviour
     public Text monsterSarisfaction_Text; //만족도 text
     public Text monsterStayTime_Text; //머무를시간
 
-   
-
 }

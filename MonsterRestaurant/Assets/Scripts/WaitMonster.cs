@@ -75,7 +75,7 @@ public class WaitMonster : MonoBehaviour
             case 4:
                 WaitMonsterList.Add(new Monster(4, 4, "괴물4", "괴물4설명", "야성", "음식4", 120));
                 break;
-        }
+        }// 어디다 하나 Monster 리스트를 만들어놓고 가져올 수 있으면 좋을듯. 구현에도 용이.
 
 
         RemoveSlot();

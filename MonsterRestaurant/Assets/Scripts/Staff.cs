@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Staff
 {
-
     public string name; //직원이름
     public string attributeType;//속성
     public float turbidity; //탁기
