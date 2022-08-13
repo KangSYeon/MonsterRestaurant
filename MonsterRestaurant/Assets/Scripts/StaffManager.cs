@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 //휴식중, 대기중, 호출중일때 이미지가 나타날 위치에 이미지 넣어야함
 
-
-
 public class StaffManager : MonoBehaviour
 {
     public Text staffGrade_text; //직원 등급 텍스트

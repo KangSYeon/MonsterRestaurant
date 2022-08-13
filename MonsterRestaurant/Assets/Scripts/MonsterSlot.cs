@@ -13,8 +13,6 @@ public class MonsterSlot : MonoBehaviour
     public Text monsterfavoriteFood_Text;
     public Text monsterStayTime_Text; //머무를시간
 
-    
-
     public void AddMonster(Monster _monster) //괴물 추가
     {
         for (int i = 0; i < _monster.monsterGrade; i++)
