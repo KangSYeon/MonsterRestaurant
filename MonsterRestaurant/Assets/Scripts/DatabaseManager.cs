@@ -21,5 +21,5 @@ public class DatabaseManager : MonoBehaviour
 
 
     public List<Staff> staffList = new List<Staff>();
-
+    public List<Monster> MonsterList = new List<Monster>();
 }

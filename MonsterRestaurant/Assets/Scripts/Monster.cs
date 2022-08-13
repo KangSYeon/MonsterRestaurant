@@ -2,10 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+[System.Serializable]
+
+public class Monster
 {
-    int number = 1;
-    string name = "Monster1";
-    string property = "µ¿È­";
-    string preferFood = "Á×À½ÀÇ ¿ÐÃ÷";
+    public int monsterID;//±«¹° ID
+    public int monsterGrade;//±«¹° À§Çèµµ
+    public string monsterName; //±«¹° ÀÌ¸§
+    public string monsterDescription; //±«¹° ¼³¸í
+    public Sprite monsterIcon; //±«¹° ÀÌ¹ÌÁö
+    public string monsterType; //±«¹° ¼Ó¼º
+    public string favoriteFood; //¼±È£ÇÏ´ÂÀ½½Ä
+    public int monsterStayTime; //¸Ó¹«¸£´Â ½Ã°£
+
+    /*
+    public enum MonsterType
+    {
+        Wild, //¾ß¼º
+        Fairytale, //µ¿È­
+        Myth, //½ÅÈ­
+        Devil //¾Ç±Í
+    }*/
+
+    public Monster(int _monsterID, int _monsterGrade, string _monsterName, string _monsterDescription, string _monsterType, string _favoriteFood, int _monsterStayTime)//»ý¼ºÀÚ
+    {
+        monsterID = _monsterID;
+        monsterGrade = _monsterGrade;
+        monsterName = _monsterName;
+        monsterDescription = _monsterDescription;
+        monsterType = _monsterType;
+        favoriteFood = _favoriteFood;
+        monsterIcon = Resources.Load("MonsterIcon/" + _monsterID.ToString(), typeof(Sprite)) as Sprite;
+        monsterStayTime = _monsterStayTime;
+    }
+
 }
