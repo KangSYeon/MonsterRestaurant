@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//휴식중, 대기중, 호출중일때 이미지가 나타날 위치에 이미지 넣어야함
+//휴식중, 대기중 : 의자, 침대의 하위오브젝트로 넣어둠
+//의자그래픽, 침대그래픽의 위치에 스태프 그래픽이 위치하게 하면 위치변경없이도 될 것같음
+
+//스르륵 나타나게하는 이펙트 추가하기
+
+//선택된 테이블 값을 받아와서 _selectedTable을 변경해야함
+
+//선택된 괴물의 속성을 받아와서 탁기증감폭 변경해야함
 
 public class StaffManager : MonoBehaviour
 {
@@ -29,6 +36,8 @@ public class StaffManager : MonoBehaviour
     public string staff_Situation = "대기중";
 
     public int amount = 5; //탁기 증가량
+
+    private int _selectedTable = 0; //선택된 테이블에 따라서 변화
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +66,6 @@ public class StaffManager : MonoBehaviour
         StopAllCoroutines();
 
         stanby.gameObject.SetActive(true);
-        //stanby 오브젝트를 대기하는곳(의자둘곳)쪽에 위치시키기
         rest.gameObject.SetActive(false);
         call.gameObject.SetActive(false);
 
@@ -71,7 +79,6 @@ public class StaffManager : MonoBehaviour
 
 
         rest.gameObject.SetActive(true);
-        //rest 오브젝트를 옥상직원위치로
         stanby.gameObject.SetActive(false);
         call.gameObject.SetActive(false);
 
@@ -84,7 +91,19 @@ public class StaffManager : MonoBehaviour
         TurbidityPlus();
 
         call.gameObject.SetActive(true);
-        //테이블번호(1~6번)받아와서 call 오브젝트의 위치를 옮기기
+        switch(_selectedTable)
+        {
+            case 0:
+                call.transform.localPosition = new Vector3(-5.2f, -2.5f, 0);
+                break;
+            case 1:
+                call.transform.localPosition = new Vector3(2, -2.5f, 0);
+                break;
+            case 2:
+                call.transform.localPosition = new Vector3(9.2f, -2.5f, 0);
+                break;
+        }
+
         rest.gameObject.SetActive(false);
         stanby.gameObject.SetActive(false);
 
@@ -129,8 +148,8 @@ public class StaffManager : MonoBehaviour
     IEnumerator TurbidityMinusCoroutine(float delayTime)
     {
         turbidity -= 10;
-        Debug.Log("turbidity :" + turbidity);
         SetTurbidity();
+        Debug.Log("turbidity :" + turbidity);
         yield return new WaitForSeconds(delayTime);
         StartCoroutine(TurbidityMinusCoroutine(2f));
     }
