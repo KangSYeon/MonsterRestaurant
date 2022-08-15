@@ -63,9 +63,9 @@ public class PlayerMove : MonoBehaviour
             dirVec = Vector3.right;
 
         //Scan Object
-        if (Input.GetKey(KeyCode.Space) && scanObject != null)
+        if (Input.GetKey(KeyCode.Space) &&string.Equals( scanObject.name, "Monster_RedShoes1")==true)
         {
-            Debug.Log("This is "+ scanObject.name);
+            Debug.Log("Monster_RedShoes1" );
         }
     }
 
