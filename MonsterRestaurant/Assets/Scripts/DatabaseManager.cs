@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DatabaseManager : MonoBehaviour
 {
-    public static DatabaseManager instance;
+    protected static DatabaseManager instance;
 
-    public void Awake()
+    protected void Awake()
     {
         if (instance != null)
         {
@@ -20,6 +20,6 @@ public class DatabaseManager : MonoBehaviour
     }
 
 
-    public List<Staff> staffList = new List<Staff>();
-    public List<Monster> MonsterList = new List<Monster>();
+    protected List<Staff> staffList = new List<Staff>();
+    protected List<Monster> MonsterList = new List<Monster>();
 }

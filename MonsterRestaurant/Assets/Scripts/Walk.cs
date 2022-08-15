@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public class Walk : MonoBehaviour
 {
+
+    public GameManager manager;
+
     [SerializeField]
     float _speed = 5.0f;
 
@@ -13,8 +18,10 @@ public class Walk : MonoBehaviour
     [SerializeField]
     Camera _Camera;
 
-    void Awake()
+    void Start()
     {
+        manager = GameManager.GetManager;
+
         _position = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -64,11 +71,13 @@ public class Walk : MonoBehaviour
                 _position.y = -4;
             }
             //Outside Middle
-            if ((transform.position.x >= 27f) && (transform.position.x <= 25))
+            if ((transform.position.x >= -27f) && (transform.position.x <= -25))
             {
                 _Camera.transform.position = new Vector3(0f, 0f, -10f);
                 _position.x = -9;
                 _position.y = -4;
+
+                manager.ChangeStateToOpen();
             }
             //Floor2 right
             if ((transform.position.x >= 36f) && (transform.position.x <= 38f))

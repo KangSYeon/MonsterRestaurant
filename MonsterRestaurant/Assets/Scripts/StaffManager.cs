@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class StaffManager : MonoBehaviour
 {
+    DataTable data;
+
     public Text staffGrade_text; //직원 등급 텍스트
     public Text staffName_text; //직원 이름 텍스트
     public Text staffAttributeType_text; //직원 속성 텍스트
@@ -66,6 +68,7 @@ public class StaffManager : MonoBehaviour
     {
         staffSituation_text.text = "휴식중";//직원창의 상태 텍스트 휴식중으로
         TurbidityMinus();
+
 
         rest.gameObject.SetActive(true);
         //rest 오브젝트를 옥상직원위치로
