@@ -8,7 +8,10 @@ using UnityEngine.UI;
 public class TimeManager : MonoBehaviour
 {
     [SerializeField]
-    private Text timeText;//날짜와 시간을 표현할 텍스트
+    private Text DayText;//날짜를 표현할 텍스트
+    [SerializeField]
+    private Text hourText;
+
     private FadeManager theFade;
 
     float timeElapsed = 0;
@@ -59,11 +62,19 @@ public class TimeManager : MonoBehaviour
             hour = 7+timeElapsed / timeTohour; //게임시간의 단위로 변환 
 
             float textDay = Mathf.Floor(day); //소수점아래 버림
-            float texthour = Mathf.Floor(hour); //소수점아래 버림
+            float texthour = Mathf.Floor(hour); //소수점아래 버림 + 12시간 더해줌(원래 19시인데 7시로 계산했기때문에 표기에는 12더해줌)
 
             ClockMove();
 
-            timeText.text = "DAY : " + textDay.ToString("0") + "\nHOUR : " + texthour.ToString("0"); //한자리수만 표시  
+            DayText.text = "DAY : " + textDay.ToString("0");
+
+            if(hour>12) //시간이 12시(표기시각은 24시)
+            {
+                texthour = Mathf.Floor(hour) - 12;
+                hourText.text = "HOUR : " + texthour.ToString("0"); 
+            }
+            else 
+                hourText.text ="HOUR : " + texthour.ToString("0"); //한자리수만 표시  
         }
     }
 
@@ -77,6 +88,5 @@ public class TimeManager : MonoBehaviour
     {
         ShortClock.transform.Rotate(0, 0, -UnityEngine.Time.deltaTime); //델타타임 * 30 / timeTohour
         LongClock.transform.Rotate(0, 0, -UnityEngine.Time.deltaTime * 12f); //델타타임 * 360 / timeTohour
-
     }
 }
