@@ -138,9 +138,9 @@ public class DataTable : MonoBehaviour
 
         //property
         staff1._property = Property.Wild;
-        staff1._property = Property.Fairytale;
-        staff1._property = Property.Myth;
-        staff1._property = Property.Devil;
+        staff2._property = Property.Fairytale;
+        staff3._property = Property.Myth;
+        staff4._property = Property.Devil;
 
         //grade
         staff1._grade = 3;

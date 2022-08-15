@@ -45,9 +45,10 @@ public class Open : MonoBehaviour
 
     public void AddWaitingMonster()
     {
+
         int MonsterNum;
 
-        MonsterNum = 1; // Random.Range(1, 4); 현재는 그래픽 부재로 1만 나오게 설정
+        MonsterNum = Random.Range(1, 4);
 
         /*for(int i = 1; i <=3; i++)
             if (WaitingMonster.ContainsKey(i))
@@ -79,23 +80,23 @@ public class Open : MonoBehaviour
                 break;
         }
 
-        switch (count) //위치만 조정하면 됨
+        switch (count) //위치만 조정하면 됨. Rect에서의 위치가 조정해도 변하지 않는 문제가 있음.
         {
             case 0:
-                Instantiate(MonsterBubble);
-                ParentInstance = Instantiate(MonsterPrefab, new Vector2(0,0), Quaternion.identity) as GameObject;
+                Instantiate(MonsterBubble, new Vector2(0f, 0f), Quaternion.identity);
+                ParentInstance = Instantiate(MonsterPrefab, new Vector3(105, -255, 0), Quaternion.identity) as GameObject;
                 ParentInstance.transform.SetParent(SlotBase.transform);
                 Debug.Log("생성1");
                 break;
             case 1:
                 Instantiate(MonsterBubble, new Vector2(0f, 2f), Quaternion.identity);
-                ParentInstance = Instantiate(MonsterPrefab, new Vector2(1, 0), Quaternion.identity) as GameObject;
+                ParentInstance = Instantiate(MonsterPrefab, new Vector3(275, -255, 0), Quaternion.identity) as GameObject;
                 ParentInstance.transform.SetParent(SlotBase.transform);
                 Debug.Log("생성2");
                 break;
             case 2:
                 Instantiate(MonsterBubble, new Vector2(0f, 4f), Quaternion.identity);
-                ParentInstance = Instantiate(MonsterPrefab, new Vector2(2, 0), Quaternion.identity) as GameObject;
+                ParentInstance = Instantiate(MonsterPrefab, new Vector3(445, -255, 0), Quaternion.identity) as GameObject;
                 ParentInstance.transform.SetParent(SlotBase.transform);
                 Debug.Log("생성3");
                 break;

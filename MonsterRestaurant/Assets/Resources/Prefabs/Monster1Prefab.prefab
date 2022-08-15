@@ -630,7 +630,7 @@ GameObject:
   - component: {fileID: 9011392063773179783}
   - component: {fileID: 9011392063496229451}
   - component: {fileID: 9011392063496229450}
-  - component: {fileID: 9011392063496229449}
+  - component: {fileID: 1053340626693874906}
   m_Layer: 5
   m_Name: Monster1Prefab
   m_TagString: Untagged
@@ -702,7 +702,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &9011392063496229449
+--- !u!114 &1053340626693874906
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -711,11 +711,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 9011392063496229448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d264c2d81b301c14cab8a802ff6b8f40, type: 3}
+  m_Script: {fileID: 11500000, guid: b4662df17554f614983558bfccc04510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MonsterNum: 1
   monsterGrade_Text: {fileID: 5549669256939477072}
-  icon: {fileID: 9011392063560156166}
+  icon: {fileID: 0}
   monsterName_Text: {fileID: 9011392062642777460}
   monsterDescription_Text: {fileID: 1257759113462789242}
   monsterType_Text: {fileID: 9011392063791121860}
