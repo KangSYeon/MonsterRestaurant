@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovePlayer : MonoBehaviour
 {
     public float jump = 10f;
+    public float jump2 = 12f;
 
     int jumpCount = 0;
 
@@ -18,6 +19,10 @@ public class MovePlayer : MonoBehaviour
                 {
                     gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0, jump, 0);
                     jumpCount += 1; // 점프 횟수 추가
+                }
+                else if(jumpCount == 1)
+                {
+                    gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0, jump2, 0);
                 }
             }
         }

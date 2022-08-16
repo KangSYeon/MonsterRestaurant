@@ -8,6 +8,9 @@ public class JumpDataManager : MonoBehaviour
     static JumpDataManager instance;
     // 사망 판단
     public bool PlayerDie = false;
+    // 실제 하트 저장할 곳 
+    public int heart = 2;
+
     // 게임 플레이 타임
     public float playTimeCurrent = 10f;
     public float playTimeMax = 10f;
@@ -17,9 +20,15 @@ public class JumpDataManager : MonoBehaviour
         {
             return instance;
         }
+
     }
     private void Awake()
     {
+        //if(heart == 0)
+        //{
+        //    PlayerDie = true;
+        //}
+
         if(instance == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -31,6 +40,5 @@ public class JumpDataManager : MonoBehaviour
         }
     }
 
-    // 실제 스코어 저장할 곳 
-    public int score = 0;
+
 }

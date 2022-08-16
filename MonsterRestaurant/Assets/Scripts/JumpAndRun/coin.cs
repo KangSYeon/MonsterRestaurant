@@ -9,7 +9,7 @@ public class coin : MonoBehaviour
     {
         if(collision.gameObject.tag.CompareTo("Player") == 0)
         {
-            JumpDataManager.Instance.score += 1;
+            JumpDataManager.Instance.heart += 1;
             // 나 자신을 화면에서 꺼
             gameObject.SetActive(false);
         }
