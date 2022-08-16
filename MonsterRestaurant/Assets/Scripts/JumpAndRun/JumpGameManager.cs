@@ -6,14 +6,11 @@ using UnityEngine.UI;
 
 public class JumpGameManager : MonoBehaviour
 {
-    //public GameObject[] NumberImage;
-    //public Sprite[] Number;
-
     public GameObject TimeBar;
+    public GameObject EndPanel;
 
     private void Update()
-    {
-        
+    {       
 
         if (!JumpDataManager.Instance.PlayerDie)
         {
@@ -27,6 +24,21 @@ public class JumpGameManager : MonoBehaviour
                 // 배경끄기
             }      
         }
+
+        // 만약 플레이어가 죽었다면 EndPanel 켜기
+        if(JumpDataManager.Instance.PlayerDie == true)
+        {
+            EndPanel.SetActive(true);
+        }
+
+    }
+
+    //다시 시작 버튼용 함수 추가
+    public void Restart_Btn()
+    {
+        JumpDataManager.Instance.heart = 0;
+        JumpDataManager.Instance.PlayerDie = false;
+        JumpDataManager.Instance.playTimeCurrent = JumpDataManager.Instance.playTimeMax;
     }
 
 }

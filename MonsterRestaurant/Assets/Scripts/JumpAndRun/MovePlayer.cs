@@ -28,12 +28,19 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
-    // 바닥과 충돌 시 (점프 후 착지하면) 동작
+    // 바닥과 충돌 시 (점프 후 착지하면) 동작 & Block과 충돌 시 하트 -1 감소
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag.CompareTo("Land") == 0)
         {
             jumpCount = 0;
         }
+
+        if(collision.gameObject.tag.CompareTo("Block") == 0)
+        {
+            JumpDataManager.Instance.heart -= 1;
+        }
     }
+
+    
 }
