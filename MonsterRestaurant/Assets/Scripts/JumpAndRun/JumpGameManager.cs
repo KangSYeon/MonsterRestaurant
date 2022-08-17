@@ -8,6 +8,8 @@ public class JumpGameManager : MonoBehaviour
 {
     public GameObject TimeBar;
     public GameObject EndPanel;
+    public GameObject SuccessPanel;
+
 
     private void Update()
     {       
@@ -15,13 +17,15 @@ public class JumpGameManager : MonoBehaviour
         if (!JumpDataManager.Instance.PlayerDie)
         {
             JumpDataManager.Instance.playTimeCurrent -= 1 * Time.deltaTime; // 1초에 1씩만 빼기
-            TimeBar.transform.Translate(0.5f * Time.deltaTime, 0, 0);
+        // 미니플레이어 이동
+            TimeBar.transform.Translate(0.5f * Time.deltaTime/9f, 0, 0);
 
             // 시간이 다 되면 죽음
-            if (JumpDataManager.Instance.playTimeCurrent < 0)
+            if (JumpDataManager.Instance.playTimeCurrent < 0 && JumpDataManager.Instance.heart !=0)
             {
                 JumpDataManager.Instance.PlayerDie = true;
-                // 배경끄기
+                EndPanel.SetActive(false);
+                SuccessPanel.SetActive(true);
             }      
         }
 
@@ -36,9 +40,23 @@ public class JumpGameManager : MonoBehaviour
     //다시 시작 버튼용 함수 추가
     public void Restart_Btn()
     {
+        //JumpDataManager.Instance.heart = 0;
+        JumpDataManager.Instance.PlayerDie = false;
+        JumpDataManager.Instance.playTimeCurrent = JumpDataManager.Instance.playTimeMax;
+
+        EndPanel.SetActive(false);
+
+    }
+
+    //클리어 버튼용 함수 추가
+    public void Success_Btn()
+    {
         JumpDataManager.Instance.heart = 0;
         JumpDataManager.Instance.PlayerDie = false;
         JumpDataManager.Instance.playTimeCurrent = JumpDataManager.Instance.playTimeMax;
+
+        SuccessPanel.SetActive(false);
+
     }
 
 }

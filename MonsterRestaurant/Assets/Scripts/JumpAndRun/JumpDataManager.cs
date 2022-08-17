@@ -12,8 +12,8 @@ public class JumpDataManager : MonoBehaviour
     public int heart = 2;
 
     // 게임 플레이 타임
-    public float playTimeCurrent = 10f;
-    public float playTimeMax = 10f;
+    public float playTimeCurrent = 90f;
+    public float playTimeMax = 90f;
     public static JumpDataManager Instance
     {
         get
