@@ -35,7 +35,9 @@ public class DataTable : MonoBehaviour
     public class Monster
     {
         public string _name;
-        public GameObject sprite;
+        public Object sprite;
+        public Object eating;
+        //public Object bubble;
         public Property _property;
         public int _grade;
         public int _preferDish;
@@ -47,7 +49,9 @@ public class DataTable : MonoBehaviour
     public class Staff
     {
         public string _name;
-        public GameObject sprite;
+        public Object sprite;
+        public Object eating;
+        public Object sleeping;
         public Property _property;
         public int _grade;
         public int _turbidity;
@@ -100,6 +104,19 @@ public class DataTable : MonoBehaviour
         monster3._name = "monster3";
         monster4._name = "monster4";
 
+        //기본 sprite
+        monster1.sprite = Resources.Load("Prefabs/Monster/Monster1Sprite");
+        monster2.sprite = Resources.Load("Prefabs/Monster/Monster2Sprite");
+        monster3.sprite = Resources.Load("Prefabs/Monster/Monster3Sprite");
+        monster4.sprite = Resources.Load("Prefabs/Monster/Monster4Sprite");
+
+        //eating sprite
+
+        monster1.eating = Resources.Load("Prefabs/Monster/Monster1Eating");
+        monster2.eating = Resources.Load("Prefabs/Monster/Monster2Eating");
+        monster3.eating = Resources.Load("Prefabs/Monster/Monster3Eating");
+        monster4.eating = Resources.Load("Prefabs/Monster/Monster4Eating");
+
         //Property
         monster1._property = Property.Wild;
         monster2._property = Property.Fairytale;
@@ -135,6 +152,25 @@ public class DataTable : MonoBehaviour
         staff2._name = "staff2";
         staff3._name = "staff3";
         staff4._name = "staff4";
+
+        //기본 sprite
+        staff1.sprite = Resources.Load("Prefabs/Staff/Staff1Sprite");
+        staff2.sprite = Resources.Load("Prefabs/Staff/Staff2Sprite");
+        staff3.sprite = Resources.Load("Prefabs/Staff/Staff3Sprite");
+        staff4.sprite = Resources.Load("Prefabs/Staff/Staff4Sprite");
+
+        //eating sprite
+        staff1.eating = Resources.Load("Prefabs/Staff/Staff1Eating");
+        staff2.eating = Resources.Load("Prefabs/Staff/Staff2Eating");
+        staff3.eating = Resources.Load("Prefabs/Staff/Staff3Eating");
+        staff4.eating = Resources.Load("Prefabs/Staff/Staff4Eating");
+
+        //sleeping sprite
+        staff1.sleeping = Resources.Load("Prefabs/Staff/Staff1Sleeping");
+        staff2.sleeping = Resources.Load("Prefabs/Staff/Staff2Sleeping");
+        staff3.sleeping = Resources.Load("Prefabs/Staff/Staff3Sleeping");
+        staff4.sleeping = Resources.Load("Prefabs/Staff/Staff4Sleeping");
+
 
         //property
         staff1._property = Property.Wild;
