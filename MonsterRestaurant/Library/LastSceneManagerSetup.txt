@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Jump&Run_YK.unity
+- path: Assets/Scenes/KangSY.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
