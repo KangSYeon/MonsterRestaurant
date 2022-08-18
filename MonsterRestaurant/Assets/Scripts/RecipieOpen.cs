@@ -1,26 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-<<<<<<< Updated upstream
-
-public class RecipieOpen : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-}
-=======
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+//<<<<<<< Updated upstream
 
 public class RecipieOpen : MonoBehaviour
 {
@@ -29,7 +13,7 @@ public class RecipieOpen : MonoBehaviour
 
     void Start()
     {
-        Button[] stages = stageNumObject.GetComponentsInChildren<Button>();
+        Button[] stages = stageNumObject.GetComponentsInChildren<Button>(); //Button****
 
         levelat = PlayerPrefs.GetInt("levelReached");
         print(levelat);
@@ -55,4 +39,4 @@ public class RecipieOpen : MonoBehaviour
     else this.q(); //그렇지 않다면 다음 스테이지로    
 }
 }
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
