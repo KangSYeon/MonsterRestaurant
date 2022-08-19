@@ -32,18 +32,18 @@ public class GameManager : MonoBehaviour
         gamestate = GameState.Open;
         OpenObj.SetActive(true);
         //Open ºÒ·¯¿À±â
-        //SoundMan.Play("Sounds/¹ãBGM", SoundManager.Sound.Bgm);
+        SoundMan.Play("Sounds/¹ãBGM", SoundManager.Sound.Bgm);
     }
 
     void ChangeStateToRunning()
     {
         gamestate = GameState.Running;
-
+        SoundMan.Play("Sounds/½ºÅ×ÀÌÁö1BGM", SoundManager.Sound.Bgm);
     }
 
     void ChangeStateToClosed ()
     {
         gamestate = GameState.Closed;
-
+        SoundMan.Play("Sounds/³·BGM", SoundManager.Sound.Bgm);
     }
 }

@@ -26,8 +26,6 @@ public class TimeManager : MonoBehaviour
     public GameObject ShortClock;
     public GameObject LongClock;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -61,12 +59,11 @@ public class TimeManager : MonoBehaviour
             
             hour = 7+timeElapsed / timeTohour; //게임시간의 단위로 변환 
 
-            float textDay = Mathf.Floor(day); //소수점아래 버림
             float texthour = Mathf.Floor(hour); //소수점아래 버림 + 12시간 더해줌(원래 19시인데 7시로 계산했기때문에 표기에는 12더해줌)
 
             ClockMove();
 
-            DayText.text = "DAY : " + textDay.ToString("0");
+            DayText.text = "DAY : " + day;
 
             if(hour>12) //시간이 12시(표기시각은 24시)
             {
@@ -88,5 +85,21 @@ public class TimeManager : MonoBehaviour
     {
         ShortClock.transform.Rotate(0, 0, -UnityEngine.Time.deltaTime); //델타타임 * 30 / timeTohour
         LongClock.transform.Rotate(0, 0, -UnityEngine.Time.deltaTime * 12f); //델타타임 * 360 / timeTohour
+    }
+
+    public void SaveTime()
+    {
+        DataManager.instance.nowPlayer.day = day;
+    }
+
+    public void LoadTime()
+    {
+        day = DataManager.instance.nowPlayer.day;
+        SetTime();
+    }
+
+    public void SetTime()
+    {
+        DayText.text = "DAY : " + day;
     }
 }

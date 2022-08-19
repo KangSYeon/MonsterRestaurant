@@ -37,6 +37,9 @@ public class Open : MonoBehaviour
 
     bool selectedIsNull = true;
 
+    public static SoundManager SoundMan;
+    public static SoundManager GetSound { get { return SoundMan; } }
+
     void Start()
     {
         Debug.Log("Awake");
@@ -59,6 +62,7 @@ public class Open : MonoBehaviour
         if(count < 2)
         {
             AddWaitingMonster();
+            SoundMan.Play("Sounds/Doorbell2-6450");
         }
 
     }
@@ -125,6 +129,7 @@ public class Open : MonoBehaviour
         MonsterBubble = null;
         MonsterPrefab = null;
 
+        
     }
 
     public void MonsterSeats(int _monsterNum) //웨이팅몬스터에서 몇번째 몬스터인지(_monsterNum) 받아와서 리스트에 추가하는 함수(선택하는곳에)
@@ -231,6 +236,8 @@ public class Open : MonoBehaviour
                 //음식도 추가해서 디벨롭하기
 
                 SelectedClear(); //Selected 리스트 초기화
+
+                SoundMan.Play("Sounds/Eggcooking-78272");
             }
         }
 

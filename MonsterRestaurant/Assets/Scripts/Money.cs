@@ -16,6 +16,7 @@ public class Money : MonoBehaviour
     public int gold = 0;
     public Text gold_text;
 
+
     public void SetGold(int _gold)
     {
         gold = _gold;
@@ -40,5 +41,16 @@ public class Money : MonoBehaviour
             gold -= _cost;
             SetGold(gold);
         }
+    }
+
+    public void SaveGold()
+    {
+        DataManager.instance.nowPlayer.gold = gold;
+    }
+
+    public void LoadGold()
+    {
+        gold = DataManager.instance.nowPlayer.gold;
+        SetGold(gold);
     }
 }
