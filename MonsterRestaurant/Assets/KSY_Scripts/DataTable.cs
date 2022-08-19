@@ -23,6 +23,12 @@ public class DataTable : MonoBehaviour
     public static DataTable Data;
     public static DataTable GetData { get { return Data; } }
 
+    public List<int> WaitingMonster;
+    public int[] Selected;
+    public Dictionary<int, int[]> Seats;
+
+    int nowTable = 0;
+
     void Awake()
     {
         Data = this;
@@ -99,37 +105,37 @@ public class DataTable : MonoBehaviour
         #region ClassData : Monster
 
         //Name
-        monster1._name = "monster1";
-        monster2._name = "monster2";
-        monster3._name = "monster3";
-        monster4._name = "monster4";
+        monster1._name = "빨간구두";
+        monster2._name = "구미호";
+        monster3._name = "바리데기";
+        monster4._name = "좀비";
 
         //기본 sprite
-        monster1.sprite = Resources.Load("Prefabs/Monster/Monster1Sprite");
-        monster2.sprite = Resources.Load("Prefabs/Monster/Monster2Sprite");
-        monster3.sprite = Resources.Load("Prefabs/Monster/Monster3Sprite");
-        monster4.sprite = Resources.Load("Prefabs/Monster/Monster4Sprite");
+        monster1.sprite = Resources.Load("Prefabs/Monster/빨간구두_base");
+        monster2.sprite = Resources.Load("Prefabs/Monster/구미호_base");
+        monster3.sprite = Resources.Load("Prefabs/Monster/바리공주_Base");
+        monster4.sprite = Resources.Load("Prefabs/Monster/좀비_Base");
 
         //eating sprite
 
-        monster1.eating = Resources.Load("Prefabs/Monster/Monster1Eating");
-        monster2.eating = Resources.Load("Prefabs/Monster/Monster2Eating");
-        monster3.eating = Resources.Load("Prefabs/Monster/Monster3Eating");
-        monster4.eating = Resources.Load("Prefabs/Monster/Monster4Eating");
+        monster1.eating = Resources.Load("Prefabs/Monster/빨간구두_Eating");
+        monster2.eating = Resources.Load("Prefabs/Monster/구미호_Eating");
+        monster3.eating = Resources.Load("Prefabs/Monster/바리공주_Eating");
+        monster4.eating = Resources.Load("Prefabs/Monster/좀비_Eating");
 
         //Property
-        monster1._property = Property.Wild;
-        monster2._property = Property.Fairytale;
+        monster1._property = Property.Fairytale;
+        monster2._property = Property.Wild;
         monster3._property = Property.Myth;
         monster4._property = Property.Devil;
 
         //grade
-        monster1._grade = 3;
+        monster1._grade = 5;
         monster2._grade = 3;
-        monster3._grade = 3;
-        monster4._grade = 3;
+        monster3._grade = 4;
+        monster4._grade = 1;
 
-        //turbidity
+        //preferDish
 
         monster1._preferDish = 1;
         monster2._preferDish = 2;
@@ -138,38 +144,38 @@ public class DataTable : MonoBehaviour
 
         //time
 
-        monster1._time = 30;
-        monster2._time = 45;
+        monster1._time = 40;
+        monster2._time = 30;
         monster3._time = 60;
-        monster4._time = 75;
+        monster4._time = 50;
 
         #endregion
 
         #region ClassData : Staff
 
         //Name
-        staff1._name = "staff1";
-        staff2._name = "staff2";
-        staff3._name = "staff3";
-        staff4._name = "staff4";
+        staff1._name = "케빈";
+        staff2._name = "키오";
+        staff3._name = "웨어";
+        staff4._name = "스크";
 
         //기본 sprite
-        staff1.sprite = Resources.Load("Prefabs/Staff/Staff1Sprite");
-        staff2.sprite = Resources.Load("Prefabs/Staff/Staff2Sprite");
-        staff3.sprite = Resources.Load("Prefabs/Staff/Staff3Sprite");
-        staff4.sprite = Resources.Load("Prefabs/Staff/Staff4Sprite");
+        staff1.sprite = Resources.Load("Prefabs/Staff/Kevin_Base");
+        staff2.sprite = Resources.Load("Prefabs/Staff/Kino_Base");
+        staff3.sprite = Resources.Load("Prefabs/Staff/Ware_Base");
+        staff4.sprite = Resources.Load("Prefabs/Staff/seku_Base");
 
         //eating sprite
-        staff1.eating = Resources.Load("Prefabs/Staff/Staff1Eating");
-        staff2.eating = Resources.Load("Prefabs/Staff/Staff2Eating");
-        staff3.eating = Resources.Load("Prefabs/Staff/Staff3Eating");
-        staff4.eating = Resources.Load("Prefabs/Staff/Staff4Eating");
+        staff1.eating = Resources.Load("Prefabs/Staff/Kevin_Eating");
+        staff2.eating = Resources.Load("Prefabs/Staff/Kino_Eating");
+        staff3.eating = Resources.Load("Prefabs/Staff/Ware_Eating");
+        staff4.eating = Resources.Load("Prefabs/Staff/Seku_Eating");
 
         //sleeping sprite
-        staff1.sleeping = Resources.Load("Prefabs/Staff/Staff1Sleeping");
-        staff2.sleeping = Resources.Load("Prefabs/Staff/Staff2Sleeping");
-        staff3.sleeping = Resources.Load("Prefabs/Staff/Staff3Sleeping");
-        staff4.sleeping = Resources.Load("Prefabs/Staff/Staff4Sleeping");
+        staff1.sleeping = Resources.Load("Prefabs/Staff/Kevin_Sleeping");
+        staff2.sleeping = Resources.Load("Prefabs/Staff/Kino_Sleeping");
+        staff3.sleeping = Resources.Load("Prefabs/Staff/Ware_Sleeping");
+        staff4.sleeping = Resources.Load("Prefabs/Staff/Seku_Sleeping");
 
 
         //property
@@ -201,25 +207,24 @@ public class DataTable : MonoBehaviour
         #region ClassData : Dish
         
         //name
-        dish1._name = "dish1";
-        dish2._name = "dish2";
-        dish3._name = "dish3";
+        dish1._name = "칼을 든 천사의 눈알꼬치";
+        dish2._name = "차갑게 식어버린 간 스테이크";
+        dish3._name = "신선한 해독주스";
 
         //property
-        dish1._property = Property.Wild;
         dish1._property = Property.Fairytale;
-        dish1._property = Property.Myth;
-        dish1._property = Property.Devil;
+        dish2._property = Property.Wild;
+        dish3._property = Property.Devil;
 
         //cost
-        dish1._cost = 300;
+        dish1._cost = 500;
         dish2._cost = 400;
-        dish3._cost = 500;
+        dish3._cost = 300;
 
         //price
-        dish1._price = 700;
+        dish1._price = 800;
         dish2._price = 800;
-        dish3._price = 900;
+        dish3._price = 700;
 
         #endregion
 
@@ -238,8 +243,8 @@ public class DataTable : MonoBehaviour
         _staffs.Add(4, staff4);
 
         _dishes.Add(1, dish1);
-        _dishes.Add(2, dish1);
-        _dishes.Add(3, dish1);
+        _dishes.Add(2, dish2);
+        _dishes.Add(3, dish3);
 
         #endregion
     }

@@ -9,7 +9,11 @@ using UnityEngine.UI;
 
 public class Money : MonoBehaviour
 {
-    private int gold = 0;
+
+    public static Money money;
+    public static Money GetMoney { get { return money; } }
+
+    public int gold = 0;
     public Text gold_text;
 
     public void SetGold(int _gold)
