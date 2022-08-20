@@ -7,16 +7,24 @@ public class GameManager : MonoBehaviour
     public static GameManager Manager;
     public static GameManager GetManager { get { return Manager; } }
 
-    public static SoundManager SoundMan;
-    public static SoundManager GetSound { get { return SoundMan; } }
-
     public GameObject OpenObj;
+
+    BGMManager BGM;
 
     public static GameState gamestate = GameState.Closed;
 
     void Awake()
     {
         Manager = this;
+
+    }
+
+    void Start()
+    {
+        BGM = FindObjectOfType<BGMManager>();
+
+        BGM.Play(0);
+        BGM.FadeInMusic();
     }
 
     public enum GameState
@@ -32,18 +40,27 @@ public class GameManager : MonoBehaviour
         gamestate = GameState.Open;
         OpenObj.SetActive(true);
         //Open ºÒ·¯¿À±â
-        SoundMan.Play("Sounds/¹ãBGM", SoundManager.Sound.Bgm);
+
+        StartCoroutine(BGMChange(1));
+    }
+    IEnumerator BGMChange(int i)
+    {
+        BGM.FadeOutMusic();
+        yield return new WaitForSeconds(3f);
+        BGM.Play(i);
+        BGM.FadeInMusic();
     }
 
     void ChangeStateToRunning()
     {
         gamestate = GameState.Running;
-        SoundMan.Play("Sounds/½ºÅ×ÀÌÁö1BGM", SoundManager.Sound.Bgm);
+        StartCoroutine(BGMChange(2));
     }
+
 
     void ChangeStateToClosed ()
     {
         gamestate = GameState.Closed;
-        SoundMan.Play("Sounds/³·BGM", SoundManager.Sound.Bgm);
+        StartCoroutine(BGMChange(0));
     }
 }
