@@ -15,6 +15,7 @@ public class Open : MonoBehaviour
     public Button SlotBase1; //부모 obj : SlotPanel
     public Button SlotBase2; //부모 obj : SlotPanel
     public Button SlotBase3; //부모 obj : SlotPanel
+
     GameObject MonsterBubble; //말풍선
     GameObject MonsterPrefab; //배치용. Prefab으로 만들어져 있어야함.
     GameObject ParentInstance; //temp용
@@ -23,15 +24,11 @@ public class Open : MonoBehaviour
     GameObject EatingInstance; //temp용
     GameObject EatingInstance2;
 
-    GameObject WaitingMonsterPrefab;
-    public GameObject MonsterSlot; //임시 배치한 몬스터 뜨게 하는 곳
-    GameObject MonsterSlotInstance;
-
-    GameObject WaitingStaffPrefab;
-    public GameObject StaffSlot; //임시 배치한 직원 뜨게 하는 곳
-    GameObject StaffSlotInstance;
-
     public GameObject PickSeats; //가게선택 버튼 활성화용
+
+    public GameObject FoodSlot; //해금 관련
+    GameObject FoodPrefab;
+    GameObject FoodSlotInstance;
 
     int count = 0;
 
@@ -48,6 +45,7 @@ public class Open : MonoBehaviour
         data.Seats = new Dictionary<int, int[]>();
 
         AddWaitingMonster();
+        AddOpenFood();
 
         PickSeats.SetActive(true);
 
@@ -59,7 +57,10 @@ public class Open : MonoBehaviour
         if(count < 2)
         {
             AddWaitingMonster();
+            //이게 안 되고 있음.
         }
+
+        SelectedIsNull();
 
     }
 
@@ -78,25 +79,25 @@ public class Open : MonoBehaviour
 
         data.WaitingMonster.Add(MonsterNum);
 
-        Debug.Log(count);
+        Debug.Log(data.WaitingMonster.Count + "번 인덱스까지 존재");
 
         switch (MonsterNum)
         {
             case 1:
                 MonsterBubble = Resources.Load<GameObject>("Prefabs/Monster/빨간구두_Bubble");
-                MonsterPrefab = Resources.Load<GameObject>("Prefabs/Monster1Prefab");
+                MonsterPrefab = Resources.Load<GameObject>("Prefabs/PopUp/Monster1Prefab");
                 break;
             case 2:
                 MonsterBubble = Resources.Load<GameObject>("Prefabs/Monster/구미호_Bubble");
-                MonsterPrefab = Resources.Load<GameObject>("Prefabs/Monster2Prefab");
+                MonsterPrefab = Resources.Load<GameObject>("Prefabs/PopUp/Monster2Prefab");
                 break;
             case 3:
                 MonsterBubble = Resources.Load<GameObject>("Prefabs/Monster/바리공주_Bubble");
-                MonsterPrefab = Resources.Load<GameObject>("Prefabs/Monster3Prefab");
+                MonsterPrefab = Resources.Load<GameObject>("Prefabs/PopUp/Monster3Prefab");
                 break;
             case 4:
                 MonsterBubble = Resources.Load<GameObject>("Prefabs/Monster/좀비_Bubble");
-                MonsterPrefab = Resources.Load<GameObject>("Prefabs/Monster4Prefab");
+                MonsterPrefab = Resources.Load<GameObject>("Prefabs/PopUp/Monster4Prefab");
                 break;
         }
 
@@ -104,20 +105,20 @@ public class Open : MonoBehaviour
         {
             case 0:
                 Instantiate(MonsterBubble, new Vector2(0f, 0f), Quaternion.identity);
-                ParentInstance = Instantiate(MonsterPrefab, new Vector3(200, 250, 0), Quaternion.identity) as GameObject;
-                ParentInstance.transform.SetParent(SlotBase1.transform);
+                ParentInstance = Instantiate(MonsterPrefab) as GameObject;
+                ParentInstance.transform.SetParent(SlotBase1.transform, false);
                 Debug.Log("생성1");
                 break;
             case 1:
                 Instantiate(MonsterBubble, new Vector2(0f, 2f), Quaternion.identity);
-                ParentInstance = Instantiate(MonsterPrefab, new Vector3(400, 250, 0), Quaternion.identity) as GameObject;
-                ParentInstance.transform.SetParent(SlotBase2.transform);
+                ParentInstance = Instantiate(MonsterPrefab) as GameObject;
+                ParentInstance.transform.SetParent(SlotBase2.transform, false);
                 Debug.Log("생성2");
                 break;
             case 2:
                 Instantiate(MonsterBubble, new Vector2(0f, 4f), Quaternion.identity);
-                ParentInstance = Instantiate(MonsterPrefab, new Vector3(600, 250, 0), Quaternion.identity) as GameObject;
-                ParentInstance.transform.SetParent(SlotBase3.transform);
+                ParentInstance = Instantiate(MonsterPrefab) as GameObject;
+                ParentInstance.transform.SetParent(SlotBase3.transform, false);
                 Debug.Log("생성3");
                 break;
         }
@@ -127,75 +128,19 @@ public class Open : MonoBehaviour
 
     }
 
-    public void MonsterSeats(int _monsterNum) //웨이팅몬스터에서 몇번째 몬스터인지(_monsterNum) 받아와서 리스트에 추가하는 함수(선택하는곳에)
+    public void AddOpenFood()
     {
-        data.Selected[0] = data.WaitingMonster[_monsterNum];//_monsterNum번호에 앉은 몬스터 번호를 Selected[0]에 저장하고싶은 (Key값을 받아와서 Value값을 저장)
-                                                            //prefab 뜨게하기
-
-        switch (data.Selected[0])
+        if(data.dish3.IsTrue == true)
         {
-            case 1:
-                WaitingMonsterPrefab = Resources.Load<GameObject>("Prefabs/Monster1Prefab");
-                break;
-            case 2:
-                WaitingMonsterPrefab = Resources.Load<GameObject>("Prefabs/Monster2Prefab");
-                break;
-            case 3:
-                WaitingMonsterPrefab = Resources.Load<GameObject>("Prefabs/Monster3Prefab");
-                break;
-            case 4:
-                WaitingMonsterPrefab = Resources.Load<GameObject>("Prefabs/Monster4Prefab");
-                break;
+            FoodPrefab = Resources.Load<GameObject>("Prefabs/Popup/Food3Prefab");
+            FoodSlotInstance = Instantiate(FoodPrefab) as GameObject;
+            FoodSlotInstance.transform.SetParent(FoodSlot.transform, false);
         }
-
-        MonsterSlotInstance = Instantiate(WaitingMonsterPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        MonsterSlotInstance.transform.SetParent(MonsterSlot.transform);
-
-        WaitingMonsterPrefab = null;
     }
 
-    public void StaffSeats(int _staffNum) //몇번째 스태프를 선택하는지 받아와서 리스트에 추가하는 함수
-    {
-        if (data._staffs[_staffNum]._state.ToString() != "Call") //선택한 직원이 호출중이 아니라면
-        {
-            data.Selected[1] = _staffNum; //선택리스트에 추가
-
-            WaitingStaffPrefab = Resources.Load<GameObject>($"Prefabs/Staff{_staffNum}Prefab"); //이걸로 나중에 switch문 없애기...
-
-
-            StaffSlotInstance = Instantiate(WaitingStaffPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-            StaffSlotInstance.transform.SetParent(StaffSlot.transform);
-
-            WaitingMonsterPrefab = null;
-        }
-        else
-            Debug.Log("이미 호출중인 직원입니다.");
-
-        
-    }
-
-    public void DishSeats(int _dishNum) //몇번째 요리를 선택하는지 받아와서 리스트에 추가하는 함수
-    {
-        if (true)//요리가 해금된 상태라면
-        {
-            if (data._dishes[data.Selected[2]]._cost < money.gold) //소지한 돈이 비용보다 많다면
-            {
-                data.Selected[2] = _dishNum;
-            }
-            else
-                Debug.Log("돈이 부족합니다.");
-        }
-        else
-            Debug.Log("요리가 해금되지 않았습니다.");
-
-        //prefab 뜨게하기
-        //요리 배치 코드
-    }
-
+    //ButtonClick에서 조정. 거기서 실제로 사용.
     public void SetSeats(int _tablenum) //모든 선택이 완료되면 Seats에 추가하는 함수(배치하기)
     {
-        for (int i = 0; i < data.Selected.Length - 1; i++) // -1 은 요리 구현하면 지우기
-        {
             if (selectedIsNull) //선택항목이 null일경우(3개중에 하나라도 선택안될경우)
                 Debug.Log("선택이 완료되지 않았습니다.");
             else
@@ -209,38 +154,35 @@ public class Open : MonoBehaviour
                 if(_tablenum == 0)
                 {
                     EatingInstance = Instantiate(data._monsters[data.Selected[_tablenum]].eating, new Vector2(-8.2f, -1.75f), Quaternion.identity) as GameObject;
-                    EatingInstance.transform.SetParent(Floor2.transform);
+                    EatingInstance.transform.SetParent(Floor2.transform, false);
                     EatingInstance2 = Instantiate(data._staffs[data.Selected[_tablenum]].eating, new Vector2(-5.3f, -2.7f), Quaternion.identity) as GameObject;
-                    EatingInstance2.transform.SetParent(Floor2.transform);
+                    EatingInstance2.transform.SetParent(Floor2.transform, false);
                 }
                 else if (_tablenum == 1)
                 {
                     EatingInstance = Instantiate(data._monsters[data.Selected[_tablenum]].eating, new Vector2(-1f, -1.75f), Quaternion.identity) as GameObject;
-                    EatingInstance.transform.SetParent(Floor2.transform);
+                    EatingInstance.transform.SetParent(Floor2.transform, false);
                     EatingInstance2 = Instantiate(data._staffs[data.Selected[_tablenum]].eating, new Vector2(2.0f, -2.7f), Quaternion.identity) as GameObject;
-                    EatingInstance2.transform.SetParent(Floor2.transform);
+                    EatingInstance2.transform.SetParent(Floor2.transform, false);
                 }
                 else
                 {
                     EatingInstance = Instantiate(data._monsters[data.Selected[_tablenum]].eating, new Vector2(6.2f, -1.75f), Quaternion.identity) as GameObject;
-                    EatingInstance.transform.SetParent(Floor2.transform);
+                    EatingInstance.transform.SetParent(Floor2.transform, false);
                     EatingInstance2 = Instantiate(data._staffs[data.Selected[_tablenum]].eating, new Vector2(9.1f, -2.7f), Quaternion.identity) as GameObject;
-                    EatingInstance2.transform.SetParent(Floor2.transform);
+                    EatingInstance2.transform.SetParent(Floor2.transform, false);
                 }
                 
                 //음식도 추가해서 디벨롭하기
 
-                SelectedClear(); //Selected 리스트 초기화
-            }
+                //SelectedClear(); //Selected 리스트 초기화
         }
 
     }
 
     public void SelectedIsNull() //선택항목에 null이 있는지 확인하는 함수
     {
-        for (int i = 0; i < data.Selected.Length - 1; i++)//음식 구현 후 비활성화
-        {
-            if (data.Selected[i] != -1) //선택항목이 null이 아니라면(다 선택된 경우)
+            if ((data.Selected[0] != -1) && (data.Selected[1] != -1) && (data.Selected[2] != -1)) //선택항목이 null이 아니라면(다 선택된 경우)
             {
                 selectedIsNull = false;
                 button.SetActive(true); //배치하기 버튼 활성화
@@ -250,7 +192,6 @@ public class Open : MonoBehaviour
                 selectedIsNull = true;
                 button.SetActive(false); //배치하기 버튼 비활성화
             }
-        }
     }
 
     public void SelectedClear() //선택항목 초기화하는 함수(선택확정 안될시)

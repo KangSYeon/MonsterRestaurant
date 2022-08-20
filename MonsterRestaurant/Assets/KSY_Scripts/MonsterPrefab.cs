@@ -38,10 +38,11 @@ public class MonsterPrefab : MonoBehaviour
         else MonsterGrade = "¡Ú¡Ú¡Ú¡Ú¡Ú";
 
         monsterName_Text.text = data._monsters[num]._name;
-        monsterType_Text.text = data._monsters[num]._property.ToString();
+        monsterType_Text.text = "[" + data._monsters[num]._property.ToString() + "]";
         monsterfavoriteFood_Text.text = data._dishes[data._monsters[num]._preferDish]._name;
-        monsterStayTime_Text.text = data._monsters[num]._time.ToString();
+        monsterStayTime_Text.text = data._monsters[num]._time.ToString() + "ºÐ";
         monsterGrade_Text.text = MonsterGrade;
+        monsterDescription_Text.text = data._monsters[num]._describe.ToString();
     }
 
 

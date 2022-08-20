@@ -27,7 +27,7 @@ public class DataTable : MonoBehaviour
     public int[] Selected;
     public Dictionary<int, int[]> Seats;
 
-    int nowTable = 0;
+    public int nowTable = 0;
 
     void Awake()
     {
@@ -48,6 +48,7 @@ public class DataTable : MonoBehaviour
         public int _grade;
         public int _preferDish;
         public int _time;
+        public string _describe;
     }
 
     public Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>();
@@ -74,6 +75,7 @@ public class DataTable : MonoBehaviour
         public Property _property;
         public int _cost;
         public int _price;
+        public bool IsTrue;
     }
 
     public Dictionary<int, Dish> _dishes = new Dictionary<int, Dish>();
@@ -93,11 +95,18 @@ public class DataTable : MonoBehaviour
     public Dish dish1 = new Dish();
     public Dish dish2 = new Dish();
     public Dish dish3 = new Dish();
+    public Dish dish4 = new Dish();
     #endregion
 
     //데이터 초기화(초기의 Raw 데이터로 초기화)
     public void InitData()
     {
+        Selected = new int[3];
+
+        Selected[0] = -1;
+        Selected[1] = -1;
+        Selected[2] = -1;
+
         Debug.Log("TestInitData");
         //변화된 값을 일자가 지날 때마다 초기화 해주지 않을 경우
         //turbidity를 0으로 초기화하면 안됨
@@ -139,8 +148,8 @@ public class DataTable : MonoBehaviour
 
         monster1._preferDish = 1;
         monster2._preferDish = 2;
-        monster3._preferDish = 3;
-        monster4._preferDish = 4;
+        monster3._preferDish = 4;
+        monster4._preferDish = 3;
 
         //time
 
@@ -148,6 +157,11 @@ public class DataTable : MonoBehaviour
         monster2._time = 30;
         monster3._time = 60;
         monster4._time = 50;
+
+        monster1._describe = "발을 자른 죄인";
+        monster2._describe = "꼬리가 아홉개인 여우";
+        monster3._describe = "저승의 신";
+        monster4._describe = "살아있는 시체";
 
         #endregion
 
@@ -166,10 +180,10 @@ public class DataTable : MonoBehaviour
         staff4.sprite = Resources.Load("Prefabs/Staff/seku_Base");
 
         //eating sprite
-        staff1.eating = Resources.Load("Prefabs/Staff/Kevin_Eating");
-        staff2.eating = Resources.Load("Prefabs/Staff/Kino_Eating");
-        staff3.eating = Resources.Load("Prefabs/Staff/Ware_Eating");
-        staff4.eating = Resources.Load("Prefabs/Staff/Seku_Eating");
+        staff1.eating = Resources.Load("Prefabs/Staff/Kevin_Call");
+        staff2.eating = Resources.Load("Prefabs/Staff/Kino_Call");
+        staff3.eating = Resources.Load("Prefabs/Staff/Ware_Call");
+        staff4.eating = Resources.Load("Prefabs/Staff/Seku_Call");
 
         //sleeping sprite
         staff1.sleeping = Resources.Load("Prefabs/Staff/Kevin_Sleeping");
@@ -210,6 +224,7 @@ public class DataTable : MonoBehaviour
         dish1._name = "칼을 든 천사의 눈알꼬치";
         dish2._name = "차갑게 식어버린 간 스테이크";
         dish3._name = "신선한 해독주스";
+        dish4._name = "살풀이꽃전";
 
         //property
         dish1._property = Property.Fairytale;
@@ -225,6 +240,11 @@ public class DataTable : MonoBehaviour
         dish1._price = 800;
         dish2._price = 800;
         dish3._price = 700;
+
+        dish1.IsTrue = true;
+        dish2.IsTrue = true;
+        dish3.IsTrue = false;
+        dish4.IsTrue = false;
 
         #endregion
 
@@ -245,6 +265,7 @@ public class DataTable : MonoBehaviour
         _dishes.Add(1, dish1);
         _dishes.Add(2, dish2);
         _dishes.Add(3, dish3);
+        _dishes.Add(4, dish3);
 
         #endregion
     }
