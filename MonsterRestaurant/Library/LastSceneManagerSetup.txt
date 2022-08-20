@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/KangSY.unity
+- path: "Assets/Scenes/KangSY - \uBCF5\uC0AC\uBCF8.unity"
   isLoaded: 1
   isActive: 1
   isSubScene: 0
