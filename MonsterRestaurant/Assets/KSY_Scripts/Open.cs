@@ -51,12 +51,12 @@ public class Open : MonoBehaviour
 
     }
 
-    private void Update()
+    void FixedUpdate()
     {
         //영업 종료 시간 전까지만.
-        if(count < 2)
+        if(data.WaitingMonster.Count < 3)
         {
-            AddWaitingMonster();
+            Invoke("AddWaitingMonster", 2f);
             //이게 안 되고 있음.
         }
 
@@ -66,65 +66,69 @@ public class Open : MonoBehaviour
 
     public void AddWaitingMonster()
     {
-
-        int MonsterNum;
-
-        MonsterNum = Random.Range(1, 5);
-
-        /*for(int i = 1; i <=3; i++)
-            if (WaitingMonster.ContainsKey(i))
-                count = i - 1;*/
-
-        count = data.WaitingMonster.Count;
-
-        data.WaitingMonster.Add(MonsterNum);
-
-        Debug.Log(data.WaitingMonster.Count + "번 인덱스까지 존재");
-
-        switch (MonsterNum)
+        if(data.WaitingMonster.Count < 3)
         {
-            case 1:
-                MonsterBubble = Resources.Load<GameObject>("Prefabs/Monster/빨간구두_Bubble");
-                MonsterPrefab = Resources.Load<GameObject>("Prefabs/PopUp/Monster1Prefab");
-                break;
-            case 2:
-                MonsterBubble = Resources.Load<GameObject>("Prefabs/Monster/구미호_Bubble");
-                MonsterPrefab = Resources.Load<GameObject>("Prefabs/PopUp/Monster2Prefab");
-                break;
-            case 3:
-                MonsterBubble = Resources.Load<GameObject>("Prefabs/Monster/바리공주_Bubble");
-                MonsterPrefab = Resources.Load<GameObject>("Prefabs/PopUp/Monster3Prefab");
-                break;
-            case 4:
-                MonsterBubble = Resources.Load<GameObject>("Prefabs/Monster/좀비_Bubble");
-                MonsterPrefab = Resources.Load<GameObject>("Prefabs/PopUp/Monster4Prefab");
-                break;
-        }
+            int MonsterNum;
 
-        switch (count) //위치만 조정하면 됨. Rect에서의 위치가 조정해도 변하지 않는 문제가 있음.
-        {
-            case 0:
-                Instantiate(MonsterBubble, new Vector2(0f, 0f), Quaternion.identity);
-                ParentInstance = Instantiate(MonsterPrefab) as GameObject;
-                ParentInstance.transform.SetParent(SlotBase1.transform, false);
-                Debug.Log("생성1");
-                break;
-            case 1:
-                Instantiate(MonsterBubble, new Vector2(0f, 2f), Quaternion.identity);
-                ParentInstance = Instantiate(MonsterPrefab) as GameObject;
-                ParentInstance.transform.SetParent(SlotBase2.transform, false);
-                Debug.Log("생성2");
-                break;
-            case 2:
-                Instantiate(MonsterBubble, new Vector2(0f, 4f), Quaternion.identity);
-                ParentInstance = Instantiate(MonsterPrefab) as GameObject;
-                ParentInstance.transform.SetParent(SlotBase3.transform, false);
-                Debug.Log("생성3");
-                break;
-        }
+            MonsterNum = Random.Range(1, 5);
 
-        MonsterBubble = null;
-        MonsterPrefab = null;
+            /*for(int i = 1; i <=3; i++)
+                if (WaitingMonster.ContainsKey(i))
+                    count = i - 1;*/
+
+            //count = data.WaitingMonster.Count;
+
+            data.WaitingMonster.Add(MonsterNum);
+
+            Debug.Log(data.WaitingMonster.Count + "번 인덱스까지 존재");
+
+            /*
+            switch (MonsterNum)
+            {
+                case 1:
+                    MonsterBubble = Resources.Load<GameObject>("Prefabs/Monster/빨간구두_Bubble");
+                    MonsterPrefab = Resources.Load<GameObject>("Prefabs/PopUp/Monster1Prefab");
+                    break;
+                case 2:
+                    MonsterBubble = Resources.Load<GameObject>("Prefabs/Monster/구미호_Bubble");
+                    MonsterPrefab = Resources.Load<GameObject>("Prefabs/PopUp/Monster2Prefab");
+                    break;
+                case 3:
+                    MonsterBubble = Resources.Load<GameObject>("Prefabs/Monster/바리공주_Bubble");
+                    MonsterPrefab = Resources.Load<GameObject>("Prefabs/PopUp/Monster3Prefab");
+                    break;
+                case 4:
+                    MonsterBubble = Resources.Load<GameObject>("Prefabs/Monster/좀비_Bubble");
+                    MonsterPrefab = Resources.Load<GameObject>("Prefabs/PopUp/Monster4Prefab");
+                    break;
+            }
+
+            switch (count) //위치만 조정하면 됨. Rect에서의 위치가 조정해도 변하지 않는 문제가 있음.
+            {
+                case 0:
+                    Instantiate(MonsterBubble, new Vector2(0f, 0f), Quaternion.identity);
+                    ParentInstance = Instantiate(MonsterPrefab) as GameObject;
+                    ParentInstance.transform.SetParent(SlotBase1.transform, false);
+                    Debug.Log("생성1");
+                    break;
+                case 1:
+                    Instantiate(MonsterBubble, new Vector2(0f, 2f), Quaternion.identity);
+                    ParentInstance = Instantiate(MonsterPrefab) as GameObject;
+                    ParentInstance.transform.SetParent(SlotBase2.transform, false);
+                    Debug.Log("생성2");
+                    break;
+                case 2:
+                    Instantiate(MonsterBubble, new Vector2(0f, 4f), Quaternion.identity);
+                    ParentInstance = Instantiate(MonsterPrefab) as GameObject;
+                    ParentInstance.transform.SetParent(SlotBase3.transform, false);
+                    Debug.Log("생성3");
+                    break;
+            }
+
+            MonsterBubble = null;
+            MonsterPrefab = null;
+            */
+        }
 
     }
 
