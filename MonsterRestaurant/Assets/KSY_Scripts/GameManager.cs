@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
 
     BGMManager BGM;
 
+    public TimeManager TimeManager;
+
+
     public static GameState gamestate = GameState.Closed;
 
     void Awake()
@@ -25,6 +28,9 @@ public class GameManager : MonoBehaviour
 
         BGM.Play(0);
         BGM.FadeInMusic();
+
+        TimeManager = FindObjectOfType<TimeManager>();
+
     }
 
     public enum GameState
@@ -41,12 +47,16 @@ public class GameManager : MonoBehaviour
         OpenObj.SetActive(true);
         //Open 불러오기
 
-        StartCoroutine(BGMChange(1));
+        StartCoroutine(StateChange(1));
+
+        TimeManager.timeActive = true;
     }
-    IEnumerator BGMChange(int i)
+    IEnumerator StateChange(int i)
     {
         BGM.FadeOutMusic();
-        yield return new WaitForSeconds(3f);
+
+        yield return new WaitForSeconds(1f);
+
         BGM.Play(i);
         BGM.FadeInMusic();
     }
@@ -54,13 +64,13 @@ public class GameManager : MonoBehaviour
     void ChangeStateToRunning()
     {
         gamestate = GameState.Running;
-        StartCoroutine(BGMChange(2));
+        StartCoroutine(StateChange(2));
     }
 
 
     void ChangeStateToClosed ()
     {
         gamestate = GameState.Closed;
-        StartCoroutine(BGMChange(0));
+        StartCoroutine(StateChange(0));
     }
 }

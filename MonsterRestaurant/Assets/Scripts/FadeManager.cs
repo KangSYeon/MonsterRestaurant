@@ -12,8 +12,7 @@ public class FadeManager : MonoBehaviour //fadeout->fadein
 
     private void Start()
     {
-        image = GetComponent<Image>();
-        FadeIn(); //æ¿ ∑ŒµÂµ…∂ß fadein¿Ã ¿⁄µø¿∏∑Œ Ω««‡µ 
+        image = GetComponent<Image>();       
     }
 
     //ΩÃ±€≈Ê

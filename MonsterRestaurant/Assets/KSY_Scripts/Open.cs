@@ -10,10 +10,13 @@ public class Open : MonoBehaviour
     public string cookingSound;//사운드 이름
     public string bellSound;
 
-    //public int playMusicTrack;
+    //public string hitSound;//사운드 이름
+    //public string onfloorSound;
 
-    private AudioManager theAudio;
+    private AudioManager theAudio;//사운드
     BGMManager BGM;
+
+    private FadeManager theFade;//fade매니저
 
     Money money; //외부스크립트에서 정보가져오기**
     public GameObject button; //배치하기버튼을 담은 오브젝트
@@ -51,8 +54,10 @@ public class Open : MonoBehaviour
 
         data = DataTable.GetData;
 
-        theAudio = FindObjectOfType<AudioManager>();
+        theAudio = FindObjectOfType<AudioManager>(); //사운드
         BGM = FindObjectOfType<BGMManager>();
+
+        theFade = FindObjectOfType<FadeManager>(); //페이드매니저
 
         money = Money.GetMoney;
 
@@ -62,10 +67,6 @@ public class Open : MonoBehaviour
         AddWaitingMonster();
 
         PickSeats.SetActive(true);
-
-        //BGM.Play(playMusicTrack);
-        //BGM.FadeInMusic();
-        
     }
 
     private void Update()

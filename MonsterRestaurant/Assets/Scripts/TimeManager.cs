@@ -18,10 +18,12 @@ public class TimeManager : MonoBehaviour
     float day = 1; //게임시간의 날짜 ,1일부터 시작
     float hour = 7; //게임시간의 시간단위
 
+    float texthour;
+
 
     int timeTohour = 30; // 현실시간(30초)과 게임시간(1시간)의 배율 12시간일경우 6분
 
-    bool timeActive = true;
+    public bool timeActive = false;
 
     public GameObject ShortClock;
     public GameObject LongClock;
@@ -30,11 +32,16 @@ public class TimeManager : MonoBehaviour
     void Start()
     {
         theFade = FindObjectOfType<FadeManager>();
+        timeActive = false;
+
+        DayText.text = "DAY : " + day;
+        hourText.text = "HOUR : " + texthour.ToString("0");
     }
 
     // Update is called once per frame
     void Update()
     {
+
 
         StartTime();
 
@@ -59,7 +66,7 @@ public class TimeManager : MonoBehaviour
             
             hour = 7+timeElapsed / timeTohour; //게임시간의 단위로 변환 
 
-            float texthour = Mathf.Floor(hour); //소수점아래 버림 + 12시간 더해줌(원래 19시인데 7시로 계산했기때문에 표기에는 12더해줌)
+            texthour = Mathf.Floor(hour); //소수점아래 버림 + 12시간 더해줌(원래 19시인데 7시로 계산했기때문에 표기에는 12더해줌)
 
             ClockMove();
 
@@ -101,5 +108,6 @@ public class TimeManager : MonoBehaviour
     public void SetTime()
     {
         DayText.text = "DAY : " + day;
+        hourText.text = "HOUR: " + hour;
     }
 }
