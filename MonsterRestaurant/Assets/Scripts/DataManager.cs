@@ -9,9 +9,8 @@ using System.IO;
 public class PlayerData
 {
     public float day = 1; //날짜
-    public float gameState; //낮인지 밤인지
+    public string gameState = "Closed"; //낮인지 밤인지
     public int gold = 0; //화폐
-    public string[] items; //소지한 아이템들
     public int recipes;//해금된 레시피
 }
 
@@ -53,11 +52,17 @@ public class DataManager : MonoBehaviour
 
     public void SaveData()
     {
-        Money.GetComponent<Money>().SaveGold();
-        TimeManager.GetComponent<TimeManager>().SaveTime();
+        Money.GetComponent<Money>().SaveGold(); //돈저장
+        TimeManager.GetComponent<TimeManager>().SaveTime();//시간저장
 
         string data = JsonUtility.ToJson(nowPlayer);
         File.WriteAllText(path, data); //경로
+
+        Debug.Log("Save");
+        Debug.Log(path);
+        Debug.Log("Day :" + nowPlayer.day);
+        Debug.Log("gold :" + nowPlayer.gold);
+        Debug.Log("gameState :" + nowPlayer.gameState);
     }
 
     public void LoadData()
@@ -67,6 +72,12 @@ public class DataManager : MonoBehaviour
 
         Money.GetComponent<Money>().LoadGold();
         TimeManager.GetComponent<TimeManager>().LoadTime();
+
+        Debug.Log("Load");
+        Debug.Log(path);
+        Debug.Log("Day :" + nowPlayer.day);
+        Debug.Log("gold :" + nowPlayer.gold);
+        Debug.Log("gameState :" + nowPlayer.gameState);
     }
 
     public void DataClear() //저장된 데이터가없을경우
@@ -78,5 +89,6 @@ public class DataManager : MonoBehaviour
     {
         Debug.Log(path);
         Debug.Log("Day :" + nowPlayer.day);
+        Debug.Log("gold :" + nowPlayer.gold);
     }
 }

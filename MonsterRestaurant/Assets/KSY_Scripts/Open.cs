@@ -7,6 +7,14 @@ public class Open : MonoBehaviour
 {
     DataTable data;
 
+    public string cookingSound;//사운드 이름
+    public string bellSound;
+
+    //public int playMusicTrack;
+
+    private AudioManager theAudio;
+    BGMManager BGM;
+
     Money money; //외부스크립트에서 정보가져오기**
     public GameObject button; //배치하기버튼을 담은 오브젝트
     public Button MonsterSelectButton;
@@ -37,14 +45,15 @@ public class Open : MonoBehaviour
 
     bool selectedIsNull = true;
 
-    public static SoundManager SoundMan;
-    public static SoundManager GetSound { get { return SoundMan; } }
-
     void Start()
     {
         Debug.Log("Awake");
 
         data = DataTable.GetData;
+
+        theAudio = FindObjectOfType<AudioManager>();
+        BGM = FindObjectOfType<BGMManager>();
+
         money = Money.GetMoney;
 
         data.WaitingMonster = new List<int>();
@@ -54,6 +63,9 @@ public class Open : MonoBehaviour
 
         PickSeats.SetActive(true);
 
+        //BGM.Play(playMusicTrack);
+        //BGM.FadeInMusic();
+        
     }
 
     private void Update()
@@ -62,14 +74,13 @@ public class Open : MonoBehaviour
         if(count < 2)
         {
             AddWaitingMonster();
-            SoundMan.Play("Sounds/Doorbell2-6450");
         }
 
     }
 
     public void AddWaitingMonster()
     {
-
+        
         int MonsterNum;
 
         MonsterNum = Random.Range(1, 5);
@@ -125,11 +136,11 @@ public class Open : MonoBehaviour
                 Debug.Log("생성3");
                 break;
         }
-
+       
         MonsterBubble = null;
         MonsterPrefab = null;
 
-        
+        theAudio.Play(bellSound); 
     }
 
     public void MonsterSeats(int _monsterNum) //웨이팅몬스터에서 몇번째 몬스터인지(_monsterNum) 받아와서 리스트에 추가하는 함수(선택하는곳에)
@@ -237,7 +248,7 @@ public class Open : MonoBehaviour
 
                 SelectedClear(); //Selected 리스트 초기화
 
-                SoundMan.Play("Sounds/Eggcooking-78272");
+                theAudio.Play(cookingSound);
             }
         }
 
