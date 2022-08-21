@@ -9,11 +9,11 @@ using UnityEngine.UI;
 public class RecipieOpen : MonoBehaviour
 {
     int levelat; //현재 스테이지 번호, 오픈한 스테이지 번호
-    public GameObject stageNumObject;
+    public GameObject MenuCanvas;
 
     void Start()
     {
-        Button[] stages = stageNumObject.GetComponentsInChildren<Button>(); //Button****
+        Button[] stages = MenuCanvas.GetComponentsInChildren<Button>(); //Button****
 
         levelat = PlayerPrefs.GetInt("levelReached");
         print(levelat);

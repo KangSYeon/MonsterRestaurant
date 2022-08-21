@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class ButtonController : MonoBehaviour
 {
-    public void Stages_down()
+    public void StageButton1_down()
     {
-        SceneManager.LoadScene("스테이지 선택");
+        SceneManager.LoadScene("Stage");
     }
 }
